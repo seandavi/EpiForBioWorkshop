@@ -30,15 +30,14 @@ Students will have the opportunity to solve toy problems and execute example cod
 
 ## Time outline
 
-An example for a 45-minute workshop:
 
 | Activity                     | Time |
 |------------------------------|------|
 | Counterfactuals              | 15m  |
-| Causal Inference	       | 5m   |
-| Bias and Confounding	       | 5m   |
+| Causal Inference	           | 10m  |
+| Bias and Confounding	       | 10m  |
 | Causal Inference in R        | 10m  |
-| Toy Problems	               | 10m  |
+| Toy Problems	               | 15m  |
 
 # Workshop goals and objectives
 
