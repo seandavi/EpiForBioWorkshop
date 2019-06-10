@@ -88,10 +88,10 @@ Rather than relying on vague dictionary definitions, the most commonly accepted 
 
 But that's not very intuitive or easy to parse so let's consider an example:
 
-### Example 1: A dog and an ambulance
+### Example: A dog and an ambulance
 An ambulance drives by a house with its sirens on. A dog in the house barks. We can ask the causal question in a straightforward way: Did the ambulance driving by the house cause the dog to bark? 
 
-Alternatively, we can rephrase the question in terms of a counterfactual: Would the dog have barked if the ambulance had not driven by the house? We can visualize the relationship using a causal diagram also called a directed acyclic graph.
+Alternatively, we can rephrase the question in terms of a counterfactual: Would the dog have barked if the ambulance had not driven by the house? We can visualize the relationship using a causal diagram also called a directed acyclic graph (DAG).
 
 ```{r}
 cd1 <- dagitty( "dag {
@@ -99,9 +99,30 @@ cd1 <- dagitty( "dag {
 }")
 coordinates(cd1) <- list(x=c(Ambulance=1, Dog_Barking=2),
                          y=c(Ambulance=0, Dog_Barking=0))
-plot(cd1, 1,.5)
+plot(cd1)
 ```
+This diagram depicts the cause (the ambulance) and the effect (the dog barking) with an arrow indicating the direction of the causal relationship. In contrast to a diagram showing a statistical relationship, causal diagrams must state a directional relationship.
 
+## Confounding
+Confounding arises when a third variable is present in the relationship between cause-and-effect. A confounder is present when:
+1. The confounder causes the outcome
+2. The confounder causes the exposure
+3. The confounder is not a mediator (i.e. it is not present on the causal pathway between the exposure and the outcome)
+
+
+Returning to our example, the relationship between the ambulance and the barking dog could be confounded by a third variable: a nearby car crash. Perhaps this car crash is what started the dog barking before the ambulance even arrived, but the ambulance caused the dog to bark even more.
+
+```{r}
+cd2 <- dagitty( "dag {
+  Ambulance -> Dog_Barking
+  Car_Crash -> Ambulance
+  Car_Crash -> Dog_Barking
+}")
+coordinates(cd2) <- list(x=c(Ambulance=1, Dog_Barking=3, Car_Crash=2),
+                         y=c(Ambulance=0, Dog_Barking=0, Car_Crash=1))
+plot(cd2)
+```
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
