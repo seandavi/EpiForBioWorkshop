@@ -12,8 +12,6 @@ Concepts of causal inference in epidemiology have important ramifications for st
 
 ## Pre-requisites
 
-List any workshop prerequisites, for example:
-
 * Basic knowledge of R syntax
 * Familiarity with regression
 
